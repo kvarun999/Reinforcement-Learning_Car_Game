@@ -1,0 +1,33 @@
+ppo_params:
+  learning_rate: 0.0003
+  n_steps: 2048
+  batch_size: 64
+  gamma: 0.99
+  ent_coef: 0.01
+
+env_params:
+  num_rays: 8
+  max_ray_distance: 300
+  ray_spread: 180        # Added for LIDAR logic
+  max_velocity: 10       # Added for normalization
+  acceleration_rate: 0.5 # Added for car physics
+  turn_rate: 5.0         # Added for car physics
+  friction: 0.98         # Added for car physics
+  max_steps_per_episode: 1000
+  collision_penalty: -10
+  checkpoint_reward: 1
+  step_penalty: -0.01
+  start_x: 100.0         # Added to avoid hardcoding
+  start_y: 100.0         # Added to avoid hardcoding
+
+training:
+  total_timesteps: 100000
+  eval_episodes: 20
+  log_interval: 5000
+
+paths:
+  track_file: tracks/track_1.txt
+  model_path: models/ppo_car_agent.zip
+  training_log: results/training_log.json
+  reward_plot: results/reward_curve.png
+  video_output: results/agent_demonstration.mp4
